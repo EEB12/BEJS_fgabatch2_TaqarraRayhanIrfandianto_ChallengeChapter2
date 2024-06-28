@@ -48,7 +48,17 @@ class Rekening extends bank{
     }
 
     checkBalance(){
-        alert(`saldo anda adalah `+this.Saldo)
+
+        return new Promise ((resolve)=>{
+            setTimeout(()=>{
+                alert(`saldo anda adalah `+this.Saldo)
+                resolve()
+            },2000)
+            
+
+
+        })
+        
     }
     CheckTransaction(information){
         alert(`${information} Berhasil, saldo anda sekarang adalah `+this.Saldo)
@@ -76,7 +86,7 @@ async function main(){
         }
         if(command == 3){
             command=NaN
-            akun.checkBalance()
+            await akun.checkBalance()
             continue
         }
         if(command == 4){
@@ -91,7 +101,7 @@ async function main(){
                 continue
             }
             else{
-                command==1?akun.withdraw(value):command==2? await akun.deposit(value):""
+                command==1?await akun.withdraw(value):command==2? await akun.deposit(value):""
                
                 command=NaN
                 value=NaN
